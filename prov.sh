@@ -41,7 +41,9 @@ echo deb [signed-by=/usr/local/share/keyrings/edgedb-keyring.gpg] \
   $(grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2) main \
   | sudo tee /etc/apt/sources.list.d/edgedb.list
 
-sudo apt-get update && sudo apt-get install edgedb-3
+sudo apt-get update && sudo apt-get install -y edgedb-3
+
+sudo systemctl enable --now edgedb-server-3
 
 log "Clean-up"
 sudo apt-get remove -yq \
