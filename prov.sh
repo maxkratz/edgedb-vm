@@ -63,9 +63,9 @@ Icon=web-browser
 chmod u+x /home/vagrant/Desktop/*.desktop
 
 # Enable the admin UI
-sudo sed -i '/Environment=EDGEDATA=\/var\/lib\/edgedb\/3\/data\//a Environment=Environment=EDGEDB_SERVER_ADMIN_UI=enabled' /etc/systemd/system/edgedb-3-server.service
+sudo sed -i '/Environment=EDGEDATA=\/var\/lib\/edgedb\/3\/data\//a Environment=Environment=EDGEDB_SERVER_ADMIN_UI=enabled' /etc/systemd/system/edgedb-server-3.service
 sudo systemctl daemon-reload
-sudo systemctl restart edgedb-3-server
+sudo systemctl restart edgedb-server-3
 
 # Set an EdgeDB admin password
 sudo edgedb --port 5656 --tls-security insecure --admin  --unix-path /run/edgedb query "ALTER ROLE edgedb SET password := 'edgedb'"
