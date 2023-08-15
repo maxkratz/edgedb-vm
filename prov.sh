@@ -30,7 +30,18 @@ sudo apt-get upgrade -y
 # Packages for building a new kernel
 sudo apt-get install -y gcc make perl curl
 
-sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh
+# https://www.edgedb.com/docs/guides/deployment/bare_metal#debian-ubuntu-lts
+sudo mkdir -p /usr/local/share/keyrings && \
+  sudo curl --proto '=https' --tlsv1.2 -sSf \
+  -o /usr/local/share/keyrings/edgedb-keyring.gpg \
+  https://packages.edgedb.com/keys/edgedb-keyring.gpg
+
+echo deb [signed-by=/usr/local/share/keyrings/edgedb-keyring.gpg] \
+  https://packages.edgedb.com/apt \
+  $(grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2) main \
+  | sudo tee /etc/apt/sources.list.d/edgedb.list
+
+sudo apt-get update && sudo apt-get install edgedb-3
 
 log "Clean-up"
 sudo apt-get remove -yq \
