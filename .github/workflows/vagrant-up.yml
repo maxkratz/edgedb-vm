@@ -20,6 +20,9 @@ on:
     # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
     - cron: '42 4 * * 1'
 
+permissions:
+  contents: write
+
 jobs:
   vagrant-provision:
     # Running on macOS, because macOS-based GitHub-hosted action runners do support nested virtualization.
