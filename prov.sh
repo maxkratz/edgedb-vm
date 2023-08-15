@@ -49,6 +49,7 @@ sudo apt-get update && sudo apt-get install -y edgedb-3
 sudo systemctl enable --now edgedb-server-3
 
 # Add link to the WebUI to the desktop
+mkdir -p /home/vagrant/Desktop
 touch /home/vagrant/Desktop/edgedb-admin-ui.desktop
 printf "
 [Desktop Entry]
