@@ -79,8 +79,3 @@ jobs:
         with:
           body: "The VM archive can not be directly added to this release because of the size limitation of 2GB per file. Please download the splitted ZIP archive and extract it manually."
           files: edgedb-vm.z01
-      - name: release edgedb-vm (3)
-        uses: softprops/action-gh-release@v1
-        with:
-          body: "The VM archive can not be directly added to this release because of the size limitation of 2GB per file. Please download the splitted ZIP archive and extract it manually."
-          files: edgedb-vm.z02
