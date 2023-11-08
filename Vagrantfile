@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
     config.vm.define 'edgedb'
     config.vm.provider :virtualbox do |vb|
         vb.name = "edgedb"
-        vb.memory = 8192
+        vb.memory = 4096
         vb.cpus = 2
     end
     config.vm.provision "shell", path: "prov.sh", env: {"GITHUB_TOKEN" => token}, privileged: false
