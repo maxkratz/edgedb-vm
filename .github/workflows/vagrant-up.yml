@@ -28,8 +28,13 @@ jobs:
     # Running on macOS, because macOS-based GitHub-hosted action runners do support nested virtualization.
     # https://github.com/actions/runner-images/issues/433
     runs-on: macos-12
-
     steps:
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 512
+        swap-size-mb: 1024
+        remove-dotnet: 'true'
     - uses: actions/checkout@v3
     - name: install dependencies
       run: |
@@ -39,7 +44,6 @@ jobs:
     - name: show free diskspace
       run: |
         df -h
-        exit 1
     - name: run vagrant up
       run: |
         vagrant up
