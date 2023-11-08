@@ -36,6 +36,10 @@ jobs:
         brew install wget unzip gnu-tar gnu-sed
     - name: show Vagrant version
       run: vagrant --version
+    - name: show free diskspace
+      run: |
+        df -h
+        exit 1
     - name: run vagrant up
       run: |
         vagrant up
