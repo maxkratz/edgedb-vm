@@ -7,7 +7,7 @@ This repository is used to automatically build an [EdgeDB](https://www.edgedb.co
 
 ## Packages/Configuration
 
-- [Ubuntu 20.04](https://app.vagrantup.com/gusztavvargadr/boxes/ubuntu-desktop)
+- [Ubuntu 22.04](https://app.vagrantup.com/gusztavvargadr/boxes/xubuntu-desktop-2204-lts)
 - [EdgeDB](https://www.edgedb.com/)
 
 

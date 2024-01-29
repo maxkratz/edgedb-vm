@@ -74,7 +74,6 @@ sudo edgedb --port 5656 --tls-security insecure --admin  --unix-path /run/edgedb
 # Clean up
 log "Clean-up"
 sudo apt-get remove -yq \
-        snapd \
         libreoffice-* \
         thunderbird \
         pidgin \
