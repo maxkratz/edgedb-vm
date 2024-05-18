@@ -17,6 +17,8 @@ apt-get update
 apt-get install -yq virtualbox-7.0
 
 # Vagrant
-apt-get install -yq vagrant
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+apt-get update && apt-get install -yq vagrant
 
 echo "=> Prerequisites installed. Ready for GitHub Actions runner installation."
