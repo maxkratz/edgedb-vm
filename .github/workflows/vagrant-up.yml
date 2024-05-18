@@ -58,7 +58,7 @@ jobs:
         vboxmanage export edgedb -o edgedb.ovf
         sed -i -e '/<BIOS>/,/<\/BIOS>/d' edgedb.ovf
         sed -i -e '/<RemoteDisplay enabled="true">/,/<\/RemoteDisplay>/d' edgedb.ovf
-        gtar -cvf edgedb.ova edgedb.ovf edgedb-disk001.vmdk
+        tar -cvf edgedb.ova edgedb.ovf edgedb-disk001.vmdk
         rm -rf edgedb.ovf edgedb-disk001.vmdk
       # ^gtar (to use gnu-tar) instead of macOS tar
     - name: upload artifact
