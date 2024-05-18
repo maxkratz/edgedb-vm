@@ -27,10 +27,23 @@ jobs:
   vagrant-provision:
     runs-on: [self-hosted]
     steps:
-    - uses: actions/checkout@v4
-    - name: install dependencies
+    - name: clean up old VirtualBox VMs
+      run: | 
+        vboxmanage list vms | \
+        grep -o -P '(?<={).*(?=})' | \
+        while read line ; do vboxmanage unregistervm $line --delete ; done
+    - name: clean up old Vagrant artifacts
+      run: | 
+        vagrant destroy emoflon || true
+        vagrant box remove gusztavvargadr/xubuntu-desktop-2204-lts || true
+    # https://stackoverflow.com/a/71346341
+    - name: clean up old GitHub Actions runner build folder
       run: |
-        brew install wget unzip gnu-tar gnu-sed
+        ls -la ./
+        rm -rf ./* || true
+        rm -rf ./.??* || true
+        ls -la ./
+    - uses: actions/checkout@v4
     - name: show Vagrant version
       run: vagrant --version
     - name: run vagrant up
