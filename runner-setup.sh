@@ -6,7 +6,7 @@ USERNAME=maxkratz
 
 # utilities + sudo
 apt-get update
-apt-get install -yq sudo tmux htop wget grep sed gpg unzip tar
+apt-get install -yq sudo tmux htop wget grep sed gpg unzip tar curl
 /sbin/adduser $USERNAME sudo
 
 # VirtualBox
@@ -15,6 +15,8 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle_vbox_2016.gpg] http:/
 
 apt-get update
 apt-get install -yq virtualbox-7.0
+
+usermod -a -G vboxusers $USERNAME
 
 # Vagrant
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
