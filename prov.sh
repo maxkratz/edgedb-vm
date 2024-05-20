@@ -41,10 +41,10 @@ sudo mkdir -p /usr/local/share/keyrings && \
 
 echo deb [signed-by=/usr/local/share/keyrings/edgedb-keyring.gpg] \
   https://packages.edgedb.com/apt \
-  $(grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2) main \
+  jammy main \
   | sudo tee /etc/apt/sources.list.d/edgedb.list
 
-sudo apt-get update && sudo apt-get install -y edgedb-3
+sudo apt-get update && sudo apt-get install -y edgedb-3 libicu70
 
 sudo systemctl enable --now edgedb-server-3
 
