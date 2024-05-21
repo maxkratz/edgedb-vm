@@ -39,12 +39,19 @@ sudo mkdir -p /usr/local/share/keyrings && \
   -o /usr/local/share/keyrings/edgedb-keyring.gpg \
   https://packages.edgedb.com/keys/edgedb-keyring.gpg
 
+# Currently, `jammy` as workaround because the EdgeDB apt repo does not
+# contain a release for `noble`
 echo deb [signed-by=/usr/local/share/keyrings/edgedb-keyring.gpg] \
   https://packages.edgedb.com/apt \
   jammy main \
   | sudo tee /etc/apt/sources.list.d/edgedb.list
 
-sudo apt-get update && sudo apt-get install -y edgedb-3 libicu70
+# Workaround for `noble`: Install libicu70 manually
+sudo wget http://de.archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu70_70.1-2_amd64.deb
+sudo apt-get install -y ./libicu70_70.1-2_amd64.deb
+sudo rm ./libicu70_70.1-2_amd64.deb
+
+sudo apt-get update && sudo apt-get install -y edgedb-3
 
 sudo systemctl enable --now edgedb-server-3
 
