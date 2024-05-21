@@ -69,6 +69,9 @@ Icon=web-browser
 
 chmod u+x /home/vagrant/Desktop/*.desktop
 
+sudo mv /home/vagrant/Desktop/*.desktop /usr/share/xubuntu/applications/
+sudo ln -s /usr/share/xubuntu/applications/edgedb-admin-ui.desktop /home/vagrant/Desktop/edgedb-admin-ui.desktop
+
 # Enable the admin UI
 sudo cp /lib/systemd/system/edgedb-server-3.service /etc/systemd/system/edgedb-server-3.service
 sudo sed -i '/Environment=EDGEDATA=\/var\/lib\/edgedb\/3\/data\//a Environment=EDGEDB_SERVER_ADMIN_UI=enabled' /etc/systemd/system/edgedb-server-3.service
