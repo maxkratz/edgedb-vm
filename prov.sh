@@ -39,10 +39,17 @@ sudo mkdir -p /usr/local/share/keyrings && \
   -o /usr/local/share/keyrings/edgedb-keyring.gpg \
   https://packages.edgedb.com/keys/edgedb-keyring.gpg
 
+# Currently, `jammy` as workaround because the EdgeDB apt repo does not
+# contain a release for `noble`
 echo deb [signed-by=/usr/local/share/keyrings/edgedb-keyring.gpg] \
   https://packages.edgedb.com/apt \
-  $(grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2) main \
+  jammy main \
   | sudo tee /etc/apt/sources.list.d/edgedb.list
+
+# Workaround for `noble`: Install libicu70 manually
+sudo wget http://de.archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu70_70.1-2_amd64.deb
+sudo apt-get install -y ./libicu70_70.1-2_amd64.deb
+sudo rm ./libicu70_70.1-2_amd64.deb
 
 sudo apt-get update && sudo apt-get install -y edgedb-3
 
@@ -61,6 +68,9 @@ Icon=web-browser
 " > /home/vagrant/Desktop/edgedb-admin-ui.desktop
 
 chmod u+x /home/vagrant/Desktop/*.desktop
+
+sudo mv /home/vagrant/Desktop/*.desktop /usr/share/xubuntu/applications/
+sudo ln -s /usr/share/xubuntu/applications/edgedb-admin-ui.desktop /home/vagrant/Desktop/edgedb-admin-ui.desktop
 
 # Enable the admin UI
 sudo cp /lib/systemd/system/edgedb-server-3.service /etc/systemd/system/edgedb-server-3.service
